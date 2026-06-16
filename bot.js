@@ -1,19 +1,41 @@
 const mineflayer = require('mineflayer');
-const fs = require('fs');
-const http = require('http'); // مكتبة الويب الوهمية لتخطي الدفع
+const http = require('http');
 
-// 🌐 إنشاء سيرفر ويب وهمي لمنع الاستضافة من إغلاق البوت (للحصول على الخطة المجانية)
+// 🌐 سيرفر الويب الوهمي لتأمين الخطة المجانية على Render
 http.createServer((req, res) => {
   res.write("Bot is alive 24/7!");
   res.end();
 }).listen(process.env.PORT || 3000, () => {
-  console.log('🌐 تم تشغيل سيرفر الويب الوهمي لتأمين الخطة المجانية!');
+  console.log('🌐 تم تشغيل سيرفر الويب الوهمي بنجاح!');
 });
 
-// قراءة الإعدادات من ملف settings.json
-const settings = JSON.parse(fs.readFileSync('settings.json', 'utf8'));
+// ⚙️ إعدادات البوت والسيرفر مدمجة بالكامل هنا
+const settings = {
+  "bot-account": {
+    "username": "boT_abde",
+    "password": "",
+    "type": "offline"
+  },
+  "server": {
+    "ip": "5.9.41.143",
+    "port": 28139,
+    "version": "1.20.1"
+  },
+  "utils": {
+    "auto-auth": {
+      "enabled": true,
+      "password": "abdou.404"
+    },
+    "anti-afk": {
+      "enabled": true,
+      "sneak": true
+    },
+    "auto-reconnect-delay": 5000
+  }
+};
 
 function createBot() {
+    console.log('⏳ جاري محاولة الاتصال بالسيرفر...');
     const bot = mineflayer.createBot({
         host: settings.server.ip,
         port: parseInt(settings.server.port),
@@ -24,7 +46,6 @@ function createBot() {
     bot.on('spawn', () => {
         console.log('🤖 البوت دخل السيرفر بنجاح وهو واقف في السباون الآن!');
         
-        // التحقق من بلجن تسجيل الدخول
         if (settings.utils["auto-auth"].enabled) {
             setTimeout(() => {
                 bot.chat(`/register ${settings.utils["auto-auth"].password} ${settings.utils["auto-auth"].password}`);
@@ -33,7 +54,6 @@ function createBot() {
         }
     });
 
-    // الـ Anti-AFK للحركة والتخفي لعدم الطرد
     bot.on('physicTick', () => {
         if (settings.utils["anti-afk"].enabled) {
             if (Math.random() < 0.05) {
@@ -48,10 +68,10 @@ function createBot() {
 
     bot.on('end', () => {
         console.log('❌ تم فصل البوت، جاري إعادة الاتصال بعد 5 ثوانٍ...');
-        setTimeout(createBot, settings.utils["auto-reconnect-delay"] || 5000);
+        setTimeout(createBot, settings.utils["auto-reconnect-delay"]);
     });
 
-    bot.on('error', (err) => console.log('خطأ:', err));
+    bot.on('error', (err) => console.log('خطأ في البوت:', err));
 }
 
 createBot();
