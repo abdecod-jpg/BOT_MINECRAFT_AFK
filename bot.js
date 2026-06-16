@@ -1,5 +1,14 @@
 const mineflayer = require('mineflayer');
 const fs = require('fs');
+const http = require('http'); // مكتبة الويب الوهمية لتخطي الدفع
+
+// 🌐 إنشاء سيرفر ويب وهمي لمنع الاستضافة من إغلاق البوت (للحصول على الخطة المجانية)
+http.createServer((req, res) => {
+  res.write("Bot is alive 24/7!");
+  res.end();
+}).listen(process.env.PORT || 3000, () => {
+  console.log('🌐 تم تشغيل سيرفر الويب الوهمي لتأمين الخطة المجانية!');
+});
 
 // قراءة الإعدادات من ملف settings.json
 const settings = JSON.parse(fs.readFileSync('settings.json', 'utf8'));
