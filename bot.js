@@ -14,12 +14,12 @@ const settings = {
   "bot-account": {
     "username": "boT_abde",
     "password": "",
-    "type": "offline"
+    "type": "offline" // حساب مكرك
   },
   "server": {
-    "ip": "5.9.41.143", // الآي بي نظيف بدون بورت
-    "port": 28139,      // البورت منفصل تماماً
-    "version": false    // فحص تلقائي للإصدار
+    "ip": "5.9.41.143",
+    "port": 28139,
+    "version": "1.21" // 🌟 تثبيت الإصدار على 1.21 لحل مشكلة التعليق تلقائياً
   },
   "utils": {
     "auto-auth": {
@@ -30,23 +30,23 @@ const settings = {
       "enabled": true,
       "sneak": true
     },
-    "auto-reconnect-delay": 5000
+    "auto-reconnect-delay": 10000 // 10 ثوانٍ إعادة اتصال لضمان الأمان
   }
 };
 
 function createBot() {
-    console.log('⏳ جاري محاولة الاتصال بالسيرفر...');
+    console.log('⏳ جاري إرسال حزم الدخول إلى السيرفر...');
     
-    // 🛠️ فصل دقيق للآي بي والبورت لمنع خطأ getaddrinfo
     const bot = mineflayer.createBot({
         host: settings.server.ip,
         port: parseInt(settings.server.port),
         username: settings["bot-account"].username,
-        version: settings.server.version
+        version: settings.server.version,
+        auth: 'offline' // 🌟 إجبار البوت على تخطي تشفير موجانج الأصلي
     });
 
     bot.on('spawn', () => {
-        console.log('🤖 البوت دخل السيرفر بنجاح وهو واقف في السباون الآن!');
+        console.log('🤖 [نجاح كلي] البوت اقتحم السيرفر وهو واقف في السباون الآن!');
         
         if (settings.utils["auto-auth"].enabled) {
             setTimeout(() => {
@@ -69,7 +69,7 @@ function createBot() {
     });
 
     bot.on('end', () => {
-        console.log('❌ تم فصل البوت، جاري إعادة الاتصال بعد 5 ثوانٍ...');
+        console.log('❌ تم فصل البوت، جاري إعادة الاتصال بعد 10 ثوانٍ...');
         setTimeout(createBot, settings.utils["auto-reconnect-delay"]);
     });
 
