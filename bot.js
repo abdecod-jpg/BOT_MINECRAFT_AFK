@@ -4,7 +4,7 @@ const http = require('http');
 // ⚙️ إعدادات البوت والسيرفر
 const settings = {
   "bot-account": { "username": "boT_abde", "password": "", "type": "offline" },
-  "server": { "ip": "5.9.41.143", "port": 28139, "version": "1.21.1" },
+  "server": { "ip": "5.9.41.143", "port": 28139, "version": "1.21.11" },
   "utils": {
     "auto-auth": { "enabled": true, "password": "abdou.404" },
     "anti-afk": { "enabled": true, "sneak": true },
