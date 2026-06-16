@@ -1,0 +1,39 @@
+{
+  "bot-account": {
+    "username": "boT_abde",
+    "password": "",
+    "type": "offline"
+  },
+  "server": {
+    "ip": "5.9.41.143",
+    "port": 28139,
+    "version": "1.20.1"
+  },
+  "position": {
+    "enabled": false,
+    "x": -1356,
+    "y": 72,
+    "z": -557
+  },
+  "utils": {
+    "auto-auth": {
+      "enabled": true,
+      "password": "abdou.404"
+    },
+    "anti-afk": {
+      "enabled": true,
+      "sneak": true
+    },
+    "chat-messages": {
+      "enabled": false,
+      "repeat": false,
+      "repeat-delay": 60,
+      "messages": [
+        "I'm a regular player"
+      ]
+    },
+    "chat-log": false,
+    "auto-reconnect": true,
+    "auto-recconect-delay": 5000
+  }
+}
