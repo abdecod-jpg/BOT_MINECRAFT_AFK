@@ -5,9 +5,9 @@
     "type": "offline"
   },
   "server": {
-    "ip": "5.9.41.143:28139",
+    "ip": "5.9.41.143",
     "port": 28139,
-    "version": "1.21"
+    "version": "false"
   },
   "position": {
     "enabled": false,
