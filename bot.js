@@ -17,7 +17,7 @@ const settings = {
     "type": "offline"
   },
   "server": {
-    "ip": "5.9.41.143",
+    "ip": "5.9.41.143:28139",
     "port": 28139,
     "version": "1.21"
   },
