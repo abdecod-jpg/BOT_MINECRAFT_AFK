@@ -7,7 +7,7 @@
   "server": {
     "ip": "5.9.41.143",
     "port": 28139,
-    "version": "false"
+    "version": "1.21.11"
   },
   "position": {
     "enabled": false,
